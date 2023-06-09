@@ -1,0 +1,3 @@
+- the instructions state that the sheet should look like the images included in those instructions, in which the "yearly change" column is formatted red/green but the "percent change" column does not have any colored formatting (it just has the "%" symbol)
+- later in the "requirements" section it lists "Conditional formatting is applied correctly and appropriately to the percent change column (10 points)" as one requirement 
+- these separate parts seem to contradict each other, so I've gone with the version that creates a match with the images that were included - I hope that makes sense
