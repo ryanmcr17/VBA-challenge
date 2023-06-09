@@ -27,16 +27,19 @@ Sub stocks():
     Dim trading_volume As Double
         trading_volume = Cells(2, 7).Value
         
+    Dim this_ticker As String
+    
     Dim price_change As Double
+    
     Dim percent_change As String
     
             
     For i = 3 To last_row
     
-        Dim this_ticker As String
-            this_ticker = Cells(i, 1).Value
+        this_ticker = Cells(i, 1).Value
+        
         Dim this_date As Long
-            this_date = Cells(i, 2).Value
+        this_date = Cells(i, 2).Value
         
         If this_ticker <> ticker Then
         
@@ -116,4 +119,73 @@ Sub stocks():
             
     Next i
     
+    
+    Cells(2, 15).Value = "Greatest % Increase"
+    Cells(3, 15).Value = "Greatest % Decrease"
+    Cells(4, 15).Value = "Greatest Total Volume"
+    
+    Cells(1, 16).Value = "Ticker"
+    Cells(1, 17).Value = "Value"
+    
+    Dim max_increase As Double
+    max_increase = 0
+    Dim increase_ticker As String
+    
+    Dim max_decrease As Double
+    max_decrease = 0
+    Dim decrease_ticker As String
+    
+    Dim max_volume As Double
+    max_volume = 0
+    Dim volume_ticker As String
+    
+    Dim last_ticker_row As Double
+    last_ticker_row = Cells(Rows.Count, 9).End(xlUp).Row
+    
+    
+    For i = 2 To last_ticker_row
+        
+        this_ticker = Cells(i, 9).Value
+        
+        Dim this_change_value As Double
+        this_change_value = Cells(i, 11).Value
+
+        Dim this_volume As Double
+        this_volume = Cells(i, 12).Value
+        
+        If this_change_value > max_increase Then
+            
+            max_increase = this_change_value
+            increase_ticker = this_ticker
+            
+        End If
+        
+        If this_change_value < max_decrease Then
+        
+            max_decrease = this_change_value
+            decrease_ticker = this_ticker
+            
+        End If
+        
+        If this_volume > max_volume Then
+        
+            max_volume = this_volume
+            volume_ticker = this_ticker
+            
+        End If
+        
+        
+        Cells(2, 16).Value = increase_ticker
+        Cells(2, 17).Value = CStr(Round(max_increase * 100, 2)) & "%"
+        
+        Cells(3, 16).Value = decrease_ticker
+        Cells(3, 17).Value = CStr(Round(max_decrease * 100, 2)) & "%"
+        
+        Cells(4, 16).Value = volume_ticker
+        Cells(4, 17).Value = max_volume
+        
+    Next i
+    
+        
+        
 End Sub
