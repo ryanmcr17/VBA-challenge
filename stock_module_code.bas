@@ -1,3 +1,4 @@
+Attribute VB_Name = "Module1"
 Sub stocks():
 
     Dim last_row As Double
@@ -109,8 +110,9 @@ Sub stocks():
                 
                 End If
                 
-                percent_change = CStr(Round(100 * price_change / open_price, 2))
-                Cells(output_row, 11).Value = percent_change & "%"
+                percent_change = price_change / open_price
+                Cells(output_row, 11).Value = percent_change
+                Cells(output_row, 11).NumberFormat = "0.00%"
                 Cells(output_row, 12).Value = trading_volume
                 
             End If
@@ -176,10 +178,12 @@ Sub stocks():
         
         
         Cells(2, 16).Value = increase_ticker
-        Cells(2, 17).Value = CStr(Round(max_increase * 100, 2)) & "%"
+        Cells(2, 17).Value = max_increase
+        Cells(2, 17).NumberFormat = "0.00%"
         
         Cells(3, 16).Value = decrease_ticker
-        Cells(3, 17).Value = CStr(Round(max_decrease * 100, 2)) & "%"
+        Cells(3, 17).Value = max_decrease
+        Cells(3, 17).NumberFormat = "0.00%"
         
         Cells(4, 16).Value = volume_ticker
         Cells(4, 17).Value = max_volume
